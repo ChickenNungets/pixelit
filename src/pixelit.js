@@ -272,7 +272,40 @@ class pixelit {
     //remove temp element
     tempCanvas.remove();
 
+    this.scaledW = scaledW;
+    this.scaledH = scaledH;
+    this.finalWidth = finalWidth;
+    this.finalHeight = finalHeight;
+    
     return this;
+  }
+
+  drawGrid() {
+    const numPixelsX = this.scaledW;
+    const numPixelsY = this.scaledH;
+
+    const pixelWidth = this.drawto.width / numPixelsX;
+    const pixelHeight = this.drawto.height / numPixelsY;
+
+    this.ctx.beginPath();
+    this.ctx.strokeStyle = 'black';
+    this.ctx.lineWidth = 1;
+
+    // Vertical lines
+    for (let i = 0; i <= numPixelsX; i++) {
+      let x = Math.round(i * pixelWidth);
+      this.ctx.moveTo(x, 0);
+      this.ctx.lineTo(x, this.drawto.height);
+    }
+
+    // Horizontal lines
+    for (let j = 0; j <= numPixelsY; j++) {
+      let y = Math.round(j * pixelHeight);
+      this.ctx.moveTo(0, y);
+      this.ctx.lineTo(this.drawto.width, y);
+    }
+
+    this.ctx.stroke();
   }
 
   /**
