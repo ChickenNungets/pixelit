@@ -232,6 +232,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
+  //grid
+  const grid = document.querySelector("#grid");
+  grid.addEventListener("change", pixelit);
+  
   //function to apply effects
   const pixelit = () => {
     document.querySelector(".loader").classList.toggle("active");
@@ -247,6 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
     palette.checked ? px.convertPalette() : null;
     maxheight.value ? px.setMaxHeight(maxheight.value).resizeImage() : null;
     maxwidth.value ? px.setMaxWidth(maxwidth.value).resizeImage() : null;
+    grid.checked ? px.drawGrid() : null;
   };
 
 
